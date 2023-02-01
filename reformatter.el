@@ -102,7 +102,7 @@ the `reformatter-define' macro."
          ;; the best default, but was apparently necessary for
          ;; some hand-rolled reformatter functions that this
          ;; library was written to replace.
-         (coding-system-for-read 'utf-8)
+         (coding-system-for-read 'utf-8-dos)
          (coding-system-for-write 'utf-8))
     (unwind-protect
         (progn
