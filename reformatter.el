@@ -102,8 +102,15 @@ the `reformatter-define' macro."
          ;; the best default, but was apparently necessary for
          ;; some hand-rolled reformatter functions that this
          ;; library was written to replace.
-         (coding-system-for-read 'utf-8-dos)
-         (coding-system-for-write 'utf-8))
+		 (code (assoc program process-coding-system-alist))
+		 (read-code (cadr (assoc program process-coding-system-alist)))
+		 (write-code (cddr (assoc program process-coding-system-alist)))
+         (coding-system-for-read (if read-code
+									 read-code
+								   'utf-8-dos))
+         (coding-system-for-write (if write-code
+									  write-code
+									'utf-8)))
     (unwind-protect
         (progn
           (write-region beg end input-file nil :quiet)
